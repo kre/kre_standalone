@@ -1,0 +1,74 @@
+#!/bin/bash
+#
+# memcachedb   This shell script takes care of starting and stopping
+#              standalone memcachedb.
+#
+# chkconfig: - 80 12
+# description: memcached is a high-performance, distributed memory
+#              object caching system, generic in nature, but
+#              intended for use in speeding up dynamic web
+#              applications by alleviating database load.
+# processname: memcachedb
+
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/usr/local/bin/memcachedb
+NAME=memcachedb
+DESC=memcachedb
+PIDFILE=/var/run/$NAME.pid
+
+PORT=21201
+DB_ENV="/sessions"
+DB="session_data.db"
+
+OPTIONS="-p21201 -d -r -u root -f session_data.db -H /sessions -N -P $PIDFILE" 
+
+
+[ -x $DAEMON ] || exit 0
+
+RETVAL=0
+
+start() {
+	echo -n $"Starting $DESC: "
+	daemon $DAEMON $OPTIONS
+	RETVAL=$?
+	[ $RETVAL -eq 0 ] && touch $PIDFILE
+	echo
+	return $RETVAL
+}
+
+stop() {
+       echo -n $"Shutting down $DESC: "
+       killproc $NAME
+       RETVAL=$?
+       echo
+       [ $RETVAL -eq 0 ] && rm -f $PIDFILE
+       return $RETVAL
+}
+
+# See how we were called.
+case "$1" in
+     start)
+	start
+	;;
+     stop)
+	stop
+	;;
+     restart|reload)
+	stop
+	start
+	RETVAL=$?
+	;;
+     status)
+	status $prog
+	RETVAL=$?
+	;;
+     *)
+	echo $"Usage: $0 {start|stop|restart|status}"
+	exit 1
+esac
+
+exit $RETVAL

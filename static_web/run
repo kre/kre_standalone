@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run -d -p 80:80 --name=webtest01 -v $PWD/htdocs:/var/www/html windley/static_web

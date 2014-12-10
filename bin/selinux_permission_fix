@@ -1,0 +1,3 @@
+#!/bin/bash
+# http://stackoverflow.com/questions/24288616/permission-denied-on-accessing-host-directory-in-docker
+chcon -Rt svirt_sandbox_file_t $1

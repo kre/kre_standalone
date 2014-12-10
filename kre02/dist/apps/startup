@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# services
+service memcached start; 
+service memcachedb start; 
+service mongod start; 
+
+# config
+/web/lib/perl/bin/install-httpd-conf.pl -aljkf
+/web/lib/perl/bin/install-init-files.pl
+
+# parser
+(cd /web/lib/perl/parser; ./buildjava.sh)
+perl -MInline::Java::Server=restart
+
+# patch from custom installs 
+ln -s /usr/lib64/httpd/modules /web/modules
+mkdir -p /web/sbin
+ln -s /usr/sbin/cronolog /web/sbin/cronolog
+
+# httpd
+#service httpd start;
+apachectl -D FOREGROUND

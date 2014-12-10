@@ -1,0 +1,28 @@
+#$OpenBSD: sshd_config,v 1.75 2007/03/19 01:01:29 djm Exp $
+AcceptEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES
+AcceptEnv LC_IDENTIFICATION LC_ALL
+AcceptEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT
+AllowTcpForwarding yes
+ChallengeResponseAuthentication no
+DenyUsers bin daemon adm lp sync shutdown halt mail news uucp operator games ftp smmsp mysql rpc sshd nobody test guest user admin apache www wwwrun httpd irc
+GatewayPorts no
+GSSAPIAuthentication yes
+GSSAPICleanupCredentials yes
+IgnoreRhosts yes
+IgnoreUserKnownHosts no
+KeepAlive yes
+LoginGraceTime 30
+PasswordAuthentication no
+PermitEmptyPasswords no
+PermitRootLogin without-password
+PrintMotd yes
+Protocol 2
+PubkeyAuthentication yes
+RSAAuthentication no
+StrictModes yes
+Subsystem	sftp	/usr/libexec/openssh/sftp-server
+SyslogFacility AUTHPRIV
+UsePAM yes
+UsePrivilegeSeparation yes
+X11Forwarding yes
+UseDNS no
