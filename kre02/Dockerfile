@@ -13,6 +13,5 @@ ENV KOBJ_ROOT /web/lib/perl
 
 EXPOSE 80
 
-#CMD ["/usr/sbin/apachectl", "-D", "FOREGROUND"]
 CMD ["/web/bin/startup"]
 

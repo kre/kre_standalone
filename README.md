@@ -17,3 +17,7 @@ This repository contains the Dockerfiles and source repositories for building a 
 ## Use
 
 ...*To be written*...
+
+## Acknowledgements
+
+Mark Horstmeier wrote a [set of KRE Installation scripts](https://github.com/solargroovy/krl_install). Some of Mark's work was used to create the Docker images. 
