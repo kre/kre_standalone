@@ -1,18 +1,17 @@
 # Version: 0.0.1 
-# install mongo db
+# get ready for code
 FROM windley/kre00
 MAINTAINER Phil Windley <pjw@byu.edu>
-ENV REFRESHED_AT 2014-11-14
+ENV REFRESHED_AT 2015-0716
 
-RUN yum install -y mongodb-org; \
-    mkdir -p /var/lib/mongo; \
-    chown mongod:mongod /var/lib/mongo
+COPY dist/apps/httpd.sysconfig /etc/sysconfig/httpd
+COPY dist/apps/startup /web/bin/startup
+COPY dist/htdocs /web/htdocs
+VOLUME ["/web/etc", "/web/lib/perl", "/web/logs"]
 
-COPY dist/apps/mongod.conf /etc/mongod.conf
+ENV KOBJ_ROOT /web/lib/perl
 
-# the distributed mongod doesn't work, this fixes is per
-#  http://stackoverflow.com/questions/26594612/dirname-missing-operand-error-while-starting-mongod-service/27051453#27051453
-COPY dist/apps/mongod /etc/init.d/mongod
+EXPOSE 80
 
-# This has to match location given in mongod.conf above
-VOLUME ["/var/lib/mongo"]
+CMD ["/web/bin/startup"]
+

@@ -14,6 +14,7 @@ unset USERNAME
 
 export KOBJ_ROOT=/web/lib/perl
 export WEB_ROOT=/web
+export JAVA_HOME=/usr/lib/jvm/java-1.6.0-openjdk.x86_64
 
 alias err="tail -f ~/logs/error_log"
 alias acc="tail -f ~/logs/access_log"

@@ -32,6 +32,7 @@ HTTPD_LANG=${HTTPD_LANG-"C"}
 
 # run in indicated TZ
 KYNETX_TZ=UTC
+KRE_HOME=/web/lib/perl
 
 # This will prevent initlog from swallowing up a pass-phrase prompt if
 # mod_ssl needs a pass-phrase from the user.
@@ -56,7 +57,7 @@ RETVAL=0
 start() {
         echo -n $"Starting $prog: "
         TZ=$KYNETX_TZ LANG=$HTTPD_LANG daemon --pidfile=${pidfile} $httpd $OPTIONS
-        /usr/bin/kns_jvm start >& /dev/null
+        $KRE_HOME/bin/kns_jvm start >& /dev/null
         RETVAL=$?
         echo
         [ $RETVAL = 0 ] && touch ${lockfile}
@@ -68,7 +69,7 @@ start() {
 # errant children.
 stop() {
 		echo -n $"Stopping $prog: "
-		/usr/bin/kns_jvm stop >& /dev/null
+		$KRE_HOME/bin/kns_jvm stop >& /dev/null
 		killproc -p ${pidfile} -d 10 $httpd
 		RETVAL=$?
 		echo

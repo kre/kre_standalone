@@ -3,7 +3,7 @@
 # services
 service memcached start; 
 service memcachedb start; 
-service mongod start; 
+#service mongod start; 
 
 # config
 /web/lib/perl/bin/install-httpd-conf.pl -aljkf
@@ -20,4 +20,6 @@ ln -s /usr/sbin/cronolog /web/sbin/cronolog
 
 # httpd
 #service httpd start;
-apachectl -D FOREGROUND
+/bin/bash
+#apachectl -D FOREGROUND
+
