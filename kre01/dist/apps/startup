@@ -20,6 +20,5 @@ ln -s /usr/sbin/cronolog /web/sbin/cronolog
 
 # httpd
 #service httpd start;
-/bin/bash
-#apachectl -D FOREGROUND
+apachectl -D FOREGROUND
 

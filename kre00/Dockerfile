@@ -2,7 +2,7 @@
 # install all the perl libraries needed by KRE
 FROM windley/memcachedb00
 MAINTAINER Phil Windley <pjw@byu.edu>
-ENV REFRESHED_AT 2014-11-14-1
+ENV REFRESHED_AT 2015-08-06-00
 
 
 RUN yum -y install \
@@ -41,6 +41,7 @@ RUN yum -y install \
 		    "perl(Email::Simple)" \
 		    "perl(ExtUtils::XSBuilder)" \
 		    "perl(File::Find::Rule)" \
+		    "perl(Filesys::Df)" \
 		    "perl(Geo::IP)" \
 		    "perl(Getopt::Std)" \
 		    "perl(HTML::Template)" \

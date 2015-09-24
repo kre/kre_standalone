@@ -1,8 +1,10 @@
 #!/bin/bash
 #chcon -Rt svirt_sandbox_file_t $PWD
+
 docker run -d -p 80:80 --name=$1 \
            -v $PWD/Kinetic-Rules-Engine:/web/lib/perl \
            -v $PWD/kre_config:/web/etc \
            -v $PWD/logs:/web/logs \
            windley/kre01 > ./last_container
 
+echo "Container exposed on" `docker-machine ip default`
