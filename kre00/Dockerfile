@@ -21,6 +21,7 @@ RUN yum -y install \
 		    "perl(APR::Table)" \
 		    "perl(Bundle::Apache2)" \
 		    "perl(Cache::Memcached)" \
+		    "perl(Cache::Memcached::Semaphore)" \
 		    "perl(CGI)" \
 		    "perl(CPAN)" \
 		    "perl(Clone)" \
